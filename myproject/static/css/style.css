@@ -1,0 +1,352 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.navbar {
+    background-color: white;
+    border: 1px solid black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.navbar .brand {
+    font-size: 26px;
+    font-weight: bold;
+    color: #4fab3f;
+    font-family: 'Muli', sans-serif;
+}
+
+
+
+.sidenav{
+    height: 100%;
+    width: 200px;
+    position: fixed;
+    z-index: 1;
+    background-color: rgb(239, 239, 239);
+    border: 1px solid black;
+    overflow-x: hidden;
+    padding-top: 20px;
+}
+
+.sidenav a {
+    padding: 6px 6px 6px 16px;
+    text-decoration: none;
+    font-size: 20px;
+    color: #000000;
+    display: block;
+}
+
+.sidenav a:hover{
+    color:#45c245;
+}
+
+.main{
+    margin-left: 200px;
+    padding: 0px 10px;
+}
+
+.container {
+    display: flex;
+    height: 100vh; 
+}
+
+.left, .right {
+    display: flex;
+    justify-content: center; 
+    align-items: center;    
+    padding: 20px;
+}
+
+.left {
+    width: 60%;
+    background-color: #d0d0d0;
+}
+
+.right {
+    width: 40%;
+    background-color: #faf8f8;
+}
+
+.content {
+    text-align: center;
+}
+
+
+h3 {
+    font-family: 'Muli', sans-serif;
+    color: #4fab3f;
+}
+
+h2 {
+    font-family: 'Muli', sans-serif;
+    color: #4fab3f;
+}
+
+h1 {
+    font-family: 'Muli', sans-serif;
+    font-size: 50px;
+    color: #4fab3f;
+}
+
+.home-btn {
+    display: inline-block;
+    padding: 15px 30px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #489a39;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    
+}
+.home-btn:hover {
+    background-color: #54b244;
+}
+
+.home-div {
+    height: 200px;
+    width: 400px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -100px;
+    margin-left: -200px;
+}
+
+.login-container label, 
+        .login-container input, 
+        .login-container button {
+            display: block;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        .login-container input {
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        .login-container button {
+            padding: 10px;
+            background-color: #489a39;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .login-container button:hover {
+            background-color: #54b244;
+        }
+
+/*occupancy*/
+.dashboard {
+    max-width: 1200px;
+    margin: auto;
+}
+.chart-container {
+    margin-bottom: 30px;
+}
+.summary-blocks {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+.summary-block {
+    flex: 1;
+    background-color: #fff;
+    padding: 20px;
+    margin: 0 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    text-align: center;
+}
+.summary-block h3 {
+    margin-top: 0;
+}
+.time-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 30px;
+}
+.time-table th, .time-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+.time-table th {
+    background-color: #f4f4f4;
+}
+.time-table td {
+    background-color: #fff;
+}
+.custom-legend {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+}
+.custom-legend li {
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+}
+.custom-legend span {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+}
+ /* parking lot profile */       
+.info_content {
+    background-color: #fff;
+    padding: 15px;
+
+}
+
+.info_content h2 {
+    margin-top: 0;
+    
+}
+
+.info_content h3 {
+    margin: 5px 0;
+    color: #555;
+}
+
+.info_content a.home-btn {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 20px;
+  
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.info_content a.home-btn:hover {
+    background-color: #12ab04;
+}
+
+.heading{
+    text-align: center;
+}
+.heading .dropdown-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.heading .dropdown-label {
+    margin-right: 10px;
+    font-size: 1.2em;
+    color: #333;
+}
+
+.heading .dropdown {
+    padding: 10px;
+    font-size: 1em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    background-color: #fff;
+    color: #333;
+    width: 300px; /* Adjust width as needed */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.heading .dropdown:focus {
+    border-color:  #12ab04;
+    box-shadow:  #12ab04;
+}
+
+
+/* Seasonal Comparison Section */
+.seasonal-comparison {
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.seasonal-comparison h2 {
+    color: #4a90e2;
+}
+
+.seasonal-comparison p {
+    margin-bottom: 10px;
+}
+
+.season-plot {
+    position: relative;
+}
+
+.season-plot img {
+    width: 100%;
+    max-height: 400px;
+    object-fit: contain;
+}
+
+.occupancy-levels {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.occupancy-levels h4 {
+    margin: 0;
+    color: #4a90e2;
+}
+
+.occupancy-levels .level {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.occupancy-levels .level div {
+    width: 20px;
+    height: 20px;
+    border-radius: 3px;
+}
+
+.highest {
+    background: #ff4d4d;
+}
+
+.lowest {
+    background: #4caf50;
+}
+
+.season-comparison-table {
+    overflow-x: auto;
+    margin-top: 20px;
+}
+
+.season-comparison-table table {
+    width: 100%;
+    border-collapse: collapse;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.season-comparison-table th {
+    background-color: #4a90e2;
+    color: #fff;
+    padding: 10px;
+    text-align: left;
+}
+
+.season-comparison-table td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.season-comparison-table td:last-child {
+    color: #4a90e2;
+}

@@ -1,0 +1,34 @@
+{% extends 'layout2.html' %}
+{% load static %}
+{% block title %}
+Homepage
+{% endblock title %}
+
+{% block content %}
+<div class= "heading">
+<h1>Nearby Parking</h1>
+<!-- Dropdown for selecting parking lot -->
+
+<select id="parking-select" class="dropdown" onchange="selectParkingLot()">
+    <option value="">Select Parking Lot</option>
+    {% for marker in markers %}
+    <option value="{{ marker.1 }},{{ marker.2 }}">{{ marker.3 }}</option>
+    {% endfor %}
+</select>
+<hr>
+</div>
+
+<!-- The div element for the map -->
+<div id="map" style="height: 600px; width: 100%;"></div>
+
+<!-- Load Google Maps API -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDCllEgUC2A568Sux23Lo4uHrS9-ZlABvo&callback=initMap&libraries=places,directions" async defer></script>
+
+<!-- Pass markers data to JavaScript -->
+<script>
+    var markers = {{ markers|safe }};
+</script>
+
+<!-- Load your JavaScript file -->
+<script src="{% static 'js/index.js' %}"></script>
+{% endblock content %}

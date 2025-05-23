@@ -1,0 +1,80 @@
+{% extends 'layout2.html' %}
+{% load static %}
+{% block title %}
+navigate
+{% endblock title %}
+
+{% block content %}
+<style>
+    /* CSS for map container */
+    #map {
+        height: 550px;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+</style>
+<h2>Routing to {{ place }}</h2>
+<h3>Navigation Details</h3>
+    <p>Latitude: {{ latitude }}</p>
+    <p>Longitude: {{ longitude }}</p>
+
+
+    <!-- Map container -->
+    <div id="map"></div>
+
+    <!-- JavaScript for Google Maps API -->
+    <script>
+        // Initialize Google Maps and display route
+        function initMap() {
+            var latitude = {{ latitude }};
+            var longitude = {{ longitude }};
+
+            var map = new google.maps.Map(document.getElementById('map'), {
+                center: { lat: latitude, lng: longitude },
+                zoom: 14
+            });
+
+            var marker = new google.maps.Marker({
+                position: { lat: latitude, lng: longitude },
+                map: map,
+                title: 'Destination'
+            });
+
+            // Calculate and display route when page loads
+            navigateToLocation(latitude, longitude, map);
+        }
+
+        // Function to calculate and display route
+        function navigateToLocation(latitude, longitude, map) {
+            // Current location (assuming starting from a fixed point or user's current location)
+            // Replace with actual current location if available
+            var currentLocation = new google.maps.LatLng(48.864716, 2.349014);
+
+            // Destination location
+            var destination = new google.maps.LatLng(latitude, longitude);
+
+            // Directions service
+            var directionsService = new google.maps.DirectionsService();
+            var directionsDisplay = new google.maps.DirectionsRenderer({
+                map: map,
+                suppressMarkers: true // Suppress default markers
+            });
+
+            // Requesting directions
+            var request = {
+                origin: currentLocation,
+                destination: destination,
+                travelMode: google.maps.TravelMode.DRIVING // Change to WALKING, BICYCLING, or TRANSIT if needed
+            };
+
+            directionsService.route(request, function(response, status) {
+                if (status == google.maps.DirectionsStatus.OK) {
+                    directionsDisplay.setDirections(response);
+                } else {
+                    alert('Error fetching directions: ' + status);
+                }
+            });
+        }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDCllEgUC2A568Sux23Lo4uHrS9-ZlABvo&callback=initMap&libraries=places,directions" async defer></script>
+{% endblock content %}

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Vélo{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+</head>
+<body>
+
+    <div class="navbar">
+        <div class="brand">Vélo</div>
+        <div class="User">
+                Welcome, {{ name }}!
+        </div>
+    </div>
+
+    <div class="sidenav">
+        <h2 style="padding-left: 10px;">Ménu</h2>
+        <a href="/homepage">Home</a>
+        <a href="/homepage/occupancy_city">City Prediction</a>
+        <a href="/homepage/user">User</a>
+        <a href="/homepage/feedback">Feedback</a>
+    </div>
+
+    <main class="main">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    
+</body>
+</html>

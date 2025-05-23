@@ -1,0 +1,48 @@
+{% extends 'layout2.html' %}
+{% load static %}
+{% block title %}
+City Occupancy Prediction
+{% endblock title %}
+
+{% block content %}
+    <div style="max-width: 1200px; margin: 0 auto; padding: 20px; font-family: Arial, sans-serif; color: #333;">
+        <h1 style="text-align: center">City Occupancy Prediction</h1>
+
+       
+        <!-- Future Forecast Section -->
+        <section style="border-radius: 8px; padding: 15px; margin-bottom: 20px;">
+            <h2>Future Forecast</h2>
+            <p>The cards below show the future forecasted occupancy for upcoming periods:</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 15px;">
+                {% for row in future_forecast %}
+                    <div style="background: #fff; border-radius: 8px; padding: 15px; flex: 1 1 calc(25% - 15px); max-width: calc(25% - 15px); box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+                        <div style="text-align: center;">
+                            {% if row.Season == 'winter' %}
+                                <img src="{% static 'icons/winter.gif' %}" alt="Winter" style="width: 60px; height: 60px;">
+                            {% elif row.Season == 'spring' %}
+                                <img src="{% static 'icons/spring.gif' %}" alt="Spring" style="width: 60px; height: 60px;">
+                            {% elif row.Season == 'summer' %}
+                                <img src="{% static 'icons/summer.gif' %}" alt="Summer" style="width: 60px; height: 60px;">
+                            {% elif row.Season == 'fall' %}
+                                <img src="{% static 'icons/fall.gif' %}" alt="Fall" style="width: 60px; height: 60px;">
+                            {% endif %}
+                        </div>
+                        <div style="text-align: center;">
+                            <h3>{{ row.Period_Display }}</h3>
+                            <p><strong>Forecasted Occupancy:</strong> {{ row.Forecasted_Occupancy|floatformat:2 }}%</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+
+
+<!-- Seasonal Comparison Section -->
+<section style="padding: 15px; margin-bottom: 20px;">
+    <h2>Seasonal Comparison of Future Forecasts</h2>
+    <p>The plot below shows the forecasted occupancy for each season:</p>
+    <img src="data:image/png;base64,{{ season_plot_data }}" alt="Average Forecasted Occupancy by Season" style="width: 100%; max-height: 400px; object-fit: contain; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);" />
+    
+</section>
+    </div>
+{% endblock content %}

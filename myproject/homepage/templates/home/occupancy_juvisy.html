@@ -1,0 +1,169 @@
+{% extends 'layout2.html' %}
+
+{% block title %}
+Juvist Occupancy
+{% endblock title %}
+
+{% block content %}
+
+<div class="dashboard">
+    <h2>Hourly Occupancy Level</h2>
+    <!-- Chart -->
+    <div class="chart-container">
+        <canvas id="occupancyChart" width="400" height="200"></canvas>
+             <!-- Custom Legend for Occupancy Levels -->
+<ul class="custom-legend">
+    <li><span style="background-color: rgba(75, 192, 192, 1);"></span>Uncrowded</li>
+    <li><span style="background-color: rgba(255, 206, 86, 1);"></span>Less Crowded</li>
+    <li><span style="background-color: rgba(255, 159, 64, 1);"></span>Relatively Crowded</li>
+    <li><span style="background-color: rgba(255, 99, 132, 1);"></span>Crowded</li>
+</ul>
+    </div>
+
+
+    <!-- Summary Blocks -->
+    <div class="summary-blocks">
+        <div class="summary-block">
+            <h3>Peak Hour</h3>
+            <p>{{ peak_hour }}</p>
+        </div>
+        <div class="summary-block">
+            <h3>Occupancy Percentage</h3>
+            <p>{{ occupancy_percentage }}%</p>
+        </div>
+    </div>
+
+    <!-- Time Table -->
+    <h2>Hourly Occupancy</h2>
+    <table class="time-table">
+        <thead>
+            <tr>
+                <th>Time Range</th>
+                <th>Occupancy Level</th>
+                <th>Category</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for time, occupancy, category in hourly_data %}
+                
+                    <td>{{ time }}</td>
+                    <td>{{ occupancy }}%</td>
+                    <td>{{ category }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<!-- Include Chart.js from a CDN -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    // Data passed from Django view
+    const labels = {{ time_labels|safe }};
+    const data = {{ occupancy_data|safe }};
+    const categories = {{ categories|safe }};
+
+    // Map categories to colors
+    const backgroundColors = categories.map(category => {
+        switch(category) {
+            case 'Uncrowded':
+                return 'rgba(75, 192, 192, 0.2)';
+            case 'Less Crowded':
+                return 'rgba(255, 206, 86, 0.2)';
+            case 'Relatively Crowded':
+                return 'rgba(255, 159, 64, 0.2)';
+            case 'Crowded':
+                return 'rgba(255, 99, 132, 0.2)';
+            default:
+                return 'rgba(75, 192, 192, 0.2)';
+        }
+    });
+
+    const borderColors = categories.map(category => {
+        switch(category) {
+            case 'Uncrowded':
+                return 'rgba(75, 192, 192, 1)';
+            case 'Less Crowded':
+                return 'rgba(255, 206, 86, 1)';
+            case 'Relatively Crowded':
+                return 'rgba(255, 159, 64, 1)';
+            case 'Crowded':
+                return 'rgba(255, 99, 132, 1)';
+            default:
+                return 'rgba(75, 192, 192, 1)';
+        }
+    });
+
+    const chartData = {
+        labels: labels,
+        datasets: [{
+            label: 'Occupancy Level',
+            data: data,
+            backgroundColor: backgroundColors,
+            borderColor: borderColors,
+            borderWidth: 1
+        }]
+    };
+
+    const config = {
+        type: 'bar',
+        data: chartData,
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Occupancy',
+                        font: {
+                            size: 18
+                        }
+                    },
+                    ticks: {
+                        font: {
+                            size: 14
+                        }
+                    }
+                },
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Time Range',
+                        font: {
+                            size: 18
+                        }
+                    },
+                    ticks: {
+                        font: {
+                            size: 14
+                        }
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    display: false // Disable default legend
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            const category = categories[context.dataIndex];
+                            return `${category}: ${context.raw}%`;
+                        }
+                    }
+                }
+            }
+        }
+    };
+
+    // Render the chart
+    const occupancyChart = new Chart(
+        document.getElementById('occupancyChart'),
+        config
+    );
+</script>
+{% endblock content %}
+
+
+

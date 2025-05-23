@@ -1,0 +1,85 @@
+{% extends "layout2.html" %}
+
+{% block title %}User Profile{% endblock title %}
+
+{% load static %}
+
+{% block content %}
+
+<style>
+
+
+    .profile-container {
+        background-color: #fff;
+        border: 1px solid #dbdbdb;
+        border-radius: 5px;
+        width: 100%%;
+        padding: 20px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .profile-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .profile-header img {
+        border-radius: 50%;
+        width: 150px;
+        height: 150px;
+        margin-right: 20px;
+    }
+
+    .profile-header h2 {
+        margin: 0;
+        font-size: 24px;
+        color: #333;
+    }
+
+    .profile-info {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .profile-info li {
+        padding: 10px 0;
+        border-bottom: 1px solid #dbdbdb;
+    }
+
+    .profile-info li:last-child {
+        border-bottom: none;
+    }
+
+    .profile-info h3 {
+        margin-top: 20px;
+        font-size: 20px;
+        color: #333;
+    }
+
+    .profile-info li span {
+        font-weight: bold;
+        color: #555;
+    }
+</style>
+
+<div class="profile-container">
+    <div class="profile-header">
+        <img src="{% static 'icons/profile.gif' %}" alt="profile">
+        <h2>User Profile</h2>
+    </div>
+    <ul class="profile-info">
+        <li><span>Name:</span> User1 </li>
+        <li><span>Email:</span> user1@gmail.com </li>
+        <li><span>Trips Taken:</span> 0 </li>
+        <li><span>Favorite Parking Spot:</span> JUVISY </li>
+        <li><span>Feedbacks given:</span> {{ feedback_count }}</li>
+    </ul>
+</div>
+
+<div class='content'>
+    <a class='home-btn' href="/homepage">To map</a>
+    <a class='home-btn' href="/">Logout</a>
+</div>
+{% endblock content %}
