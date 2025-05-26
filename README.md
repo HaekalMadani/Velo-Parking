@@ -34,4 +34,4 @@ Data: Public dataset of bicycle parking in France
 ![alt text](https://github.com/HaekalMadani/Velo-Parking/blob/main/images/map-select.png?raw=true)
 
 ## Example of prediction of hourly occupancy 
-[alt text](https://github.com/HaekalMadani/Velo-Parking/blob/main/images/stats1.png!?raw=true)
+[alt text](https://github.com/HaekalMadani/Velo-Parking/blob/main/images/stats1.png?raw=true)
